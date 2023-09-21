@@ -14,9 +14,9 @@
         <div class="row p-4 border rounded-3 bg-body">
             <div class="col-12">
                 <div class="card">
-                                            <div class="card-header">
+                    <div class="card-header">
                             Send SMS
-                        </div>
+                    </div>
                         <div class="card-body">
                             <form method="POST" action="/custom">
                                 @csrf
@@ -28,9 +28,10 @@
                                         @endforeach
                                     </select>
                                 </div>
+
                                 <div class="form-group">
-                                <label>Message</label>
-    <textarea name="body" class="form-control" rows="3">APA</textarea>
+                                    <label>Message</label>
+                                        <textarea name="body" class="form-control" rows="3">APA</textarea>
                                 </div>
                                 <button type="submit" class="btn btn-primary mt-2">Send</button>
                             </form>

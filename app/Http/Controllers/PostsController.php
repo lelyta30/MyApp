@@ -12,8 +12,8 @@ class PostsController extends Controller
 {
     public function index()
     {
-       $posts = Post::latest()->get();
-       return view('posts.index', compact('posts'));
+        $posts = Post::latest()->get();
+        return view('posts.index', compact('posts'));
     }
 
     public function create()
@@ -42,7 +42,7 @@ class PostsController extends Controller
             'post' => 'required|array',
             'body' => 'required',
         ])->validate();
-        
+
         $recipients = $request->post;
 
         foreach ($recipients as $recipient) {
@@ -69,7 +69,6 @@ class PostsController extends Controller
         }
     }
 
-
     public function edit(Request $request, Post $post)
     {
         return view('posts.edit', compact('post'));
@@ -91,8 +90,6 @@ class PostsController extends Controller
         $post = Post::find($id);
         $post->delete();
 
-
         return redirect(route('posts.index'));
     }
-
 }
