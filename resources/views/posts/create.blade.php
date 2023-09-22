@@ -15,19 +15,23 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                            Send SMS
+                        PORTAL                    
                     </div>
                         <div class="card-body">
                             <form method="POST" action="/custom">
                                 @csrf
                                 <div class="form-group">
-                                    <label>Select contact</label>
-                                    <select name="post[]" multiple class="form-control post">
-                                        @foreach ($users as $user)
-                                        <option>{{$user->phone}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
+    <label>Select contact</label>
+    <select name="post[]" multiple class="form-control post">
+        @foreach ($users as $user)
+            @if ($user->phone === '+6283845930444')
+                <option value="{{ $user->phone }}" selected>{{ $user->phone }}</option>
+            @else
+                <option value="{{ $user->phone }}">{{ $user->phone }}</option>
+            @endif
+        @endforeach
+    </select>
+</div>
 
                                 <div class="form-group">
                                     <label>Message</label>

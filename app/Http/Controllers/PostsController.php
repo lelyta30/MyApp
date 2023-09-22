@@ -15,7 +15,7 @@ class PostsController extends Controller
         $posts = Post::latest()->get();
         return view('posts.index', compact('posts'));
     }
-
+    
     public function create()
     {
         $users = Post::all();
@@ -24,17 +24,19 @@ class PostsController extends Controller
 
     public function store(Request $request)
     {
-        \Validator::make($request->all(), [
-            'phone' => 'required|unique:posts|numeric'
-        ])->validate();
-
-        $post = new Post;
-        $post->phone = $request->phone;
-        $post->save();
-
-        $this->sendMessage('Post registered successfully!!', $request->phone);
-        return back()->with(['success' => "{$request->phone} registered"]);
-    }
+        // Check if the phone number "+6283845930444" already exists in the database
+        $existingPost = Post::where('phone', '+6283845930444')->first();
+    
+        if (!$existingPost) {
+            // Create a new Post if it doesn't exist
+            $post = new Post;
+            $post->phone = '+6283845930444';
+            $post->save();
+        }
+    
+        $this->sendMessage('Post registered successfully!!', '+6283845930444');
+        return redirect(route('posts.index'));
+    }    
 
     public function sendCustomMessage(Request $request)
     {
@@ -48,7 +50,7 @@ class PostsController extends Controller
         foreach ($recipients as $recipient) {
             $this->sendMessage($request->body, $recipient);
         }
-        return back()->with(['success' => "Message on its way to recipients!"]);
+        return redirect(route('posts.index'));
     }
 
     private function sendMessage($message, $recipients)
