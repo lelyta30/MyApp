@@ -23,6 +23,19 @@
                                 <thead>
                                     <tr>
                                         <th scope="col"><input type="checkbox" id="selectAllCheckbox"></th>
+                                        <th scope="col">NO</th>
+                                <th scope="col">ID</th>
+                                <th scope="col">NAMA</th>
+                                <th scope="col">ALAMAT</th>
+                                <th scope="col">TARIF</th>
+                                <th scope="col">DAYA</th>
+                                <th scope="col">N.MTR</th>
+                                <th scope="col">M.MTR</th>
+                                <th scope="col">T.MTR</th>
+                                <th scope="col">N.CM.DVC</th>
+                                <th scope="col">MRK.CM.DVC</th>
+                                <th scope="col">TP.CM.DVC</th>
+                                <th scope="col">PORT</th>
                                         <th scope="col">PHONE</th>
                                         <th scope="col">CONTENT</th>
                                         <th scope="col">AKSI</th>
@@ -32,6 +45,18 @@
                                     @foreach($posts as $post)
                                     <tr>
                                         <td><input type="checkbox" name="selected[]" value="{{ $post->id }}" class="dataTerpilihCheckbox"></td>
+                                        <td>{{ $post->id_pelanggan  }}</td>
+                                        <td>{{ $post->name  }}</td>
+                                        <td>{{ $post->address  }}</td>
+                                        <td>{{ $post->tariff  }}</td>
+                                        <td>{{ $post->daya  }}</td>
+                                        <td>{{ $post->no_meter  }}</td>
+                                        <td>{{ $post->merk_meter  }}</td>
+                                        <td>{{ $post->type_meter  }}</td>
+                                        <td>{{ $post->no_comm_device  }}</td>
+                                        <td>{{ $post->merk_comm_device  }}</td>
+                                        <td>{{ $post->type_comm_device  }}</td>
+                                        <td>{{ $post->port  }}</td>
                                         <td>{{ $post->phone }}</td>
                                         <td>{!! $post->content !!}</td>
                                         <td class="text-center">

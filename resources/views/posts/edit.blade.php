@@ -21,6 +21,54 @@
                         @csrf
                         @method('PUT')
                         <div class="form-group">
+                            <label>id_pelanggan </label>
+                            <input type="text" name="id_pelanggan " placeholder="Masukkan id_pelanggan " value="{{ $post->id_pelanggan  }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>name </label>
+                            <input type="text" name="phone" placeholder="Masukkan Phone" value="{{ $post->phone }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>address </label>
+                            <input type="text" name="phone" placeholder="Masukkan Phone" value="{{ $post->phone }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>tariff </label>
+                            <input type="text" name="phone" placeholder="Masukkan Phone" value="{{ $post->phone }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>daya </label>
+                            <input type="text" name="phone" placeholder="Masukkan Phone" value="{{ $post->phone }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>no_meter </label>
+                            <input type="text" name="phone" placeholder="Masukkan Phone" value="{{ $post->phone }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>merk_meter </label>
+                            <input type="text" name="phone" placeholder="Masukkan Phone" value="{{ $post->phone }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>type_meter </label>
+                            <input type="text" name="phone" placeholder="Masukkan Phone" value="{{ $post->phone }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>no_comm_device </label>
+                            <input type="text" name="phone" placeholder="Masukkan Phone" value="{{ $post->phone }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>merk_comm_device </label>
+                            <input type="text" name="phone" placeholder="Masukkan Phone" value="{{ $post->phone }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>type_comm_device </label>
+                            <input type="text" name="phone" placeholder="Masukkan Phone" value="{{ $post->phone }}" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>port </label>
+                            <input type="text" name="phone" placeholder="Masukkan Phone" value="{{ $post->phone }}" class="form-control">
+                        </div>
+                        <div class="form-group">
                             <label>phone</label>
                             <input type="text" name="phone" placeholder="Masukkan Phone" value="{{ $post->phone }}" class="form-control">
                         </div>
