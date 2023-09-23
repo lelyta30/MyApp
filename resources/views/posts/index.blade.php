@@ -23,23 +23,22 @@
                                 <thead>
                                     <tr>
                                         <th scope="col"><input type="checkbox" id="selectAllCheckbox"></th>
-                                        <th scope="col">NO</th>
-                                <th scope="col">ID</th>
-                                <th scope="col">NAMA</th>
-                                <th scope="col">ALAMAT</th>
-                                <th scope="col">TARIF</th>
-                                <th scope="col">DAYA</th>
-                                <th scope="col">N.MTR</th>
-                                <th scope="col">M.MTR</th>
-                                <th scope="col">T.MTR</th>
-                                <th scope="col">N.CM.DVC</th>
-                                <th scope="col">MRK.CM.DVC</th>
-                                <th scope="col">TP.CM.DVC</th>
-                                <th scope="col">PORT</th>
+                                        <th scope="col">ID</th>
+                                        <th scope="col">NAMA</th>
+                                        <th scope="col">ALAMAT</th>
+                                        <th scope="col">TARIF</th>
+                                        <th scope="col">DAYA</th>
+                                        <th scope="col">N.MTR</th>
+                                        <th scope="col">M.MTR</th>
+                                        <th scope="col">T.MTR</th>
+                                        <th scope="col">N.CM.DVC</th>
+                                        <th scope="col">MRK.CM.DVC</th>
+                                        <th scope="col">TP.CM.DVC</th>
+                                        <th scope="col">PORT</th>
                                         <th scope="col">PHONE</th>
                                         <th scope="col">CONTENT</th>
                                         <th scope="col">AKSI</th>
-                                    </tr>
+                                        </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($posts as $post)
@@ -84,35 +83,47 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script>
-        $(document).ready( function () {
-            $('#myTable').DataTable();
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+
+        // Fungsi untuk menangani "Centang Semua"
+        $("#selectAllCheckbox").on("change", function () {
+            var isChecked = $(this).prop("checked");
+            $(".dataTerpilihCheckbox").prop("checked", isChecked);
+            updateSelectedData(); // Memanggil fungsi yang benar yaitu updateSelectedData
         });
 
-        $(document).ready(function () {
-            $('#myTable').DataTable();
-
-            // Fungsi untuk menangani "Centang Semua"
-            $("#selectAllCheckbox").on("change", function () {
-                var isChecked = $(this).prop("checked");
-                $(".dataTerpilihCheckbox").prop("checked", isChecked);
-                updateSelectedPhones();
-            });
-
-            $(".dataTerpilihCheckbox").on("change", function () {
-                updateSelectedPhones();
-            });
-
-            function updateSelectedPhones() {
-                var selectedPhones = [];
-                $(".dataTerpilihCheckbox:checked").each(function () {
-                    var phone = $(this).closest("tr").find("td:eq(1)").text();
-                    selectedPhones.push(phone);
-                });
-
-                // Memperbarui isi div dengan nomor telepon yang dipilih
-                $("#selectedPhones").text(selectedPhones.join(", "));
-            }
+        $(".dataTerpilihCheckbox").on("change", function () {
+            updateSelectedData();
         });
-    </script>
+
+        function updateSelectedData() {
+            var selectedData = []; // Array untuk menyimpan data yang dicentang
+            $(".dataTerpilihCheckbox:checked").each(function () {
+                var rowData = {
+                    id_pelanggan: $(this).closest("tr").find("td:eq(1)").text(),
+                    name: $(this).closest("tr").find("td:eq(2)").text(),
+                    address: $(this).closest("tr").find("td:eq(3)").text(),
+                    tariff: $(this).closest("tr").find("td:eq(4)").text(),
+                    daya: $(this).closest("tr").find("td:eq(5)").text(),
+                    no_meter: $(this).closest("tr").find("td:eq(6)").text(),
+                    merk_meter: $(this).closest("tr").find("td:eq(7)").text(),
+                    type_meter: $(this).closest("tr").find("td:eq(8)").text(),
+                    no_comm_device: $(this).closest("tr").find("td:eq(9)").text(),
+                    merk_comm_device: $(this).closest("tr").find("td:eq(10)").text(),
+                    type_comm_device: $(this).closest("tr").find("td:eq(11)").text(),
+                    port: $(this).closest("tr").find("td:eq(12)").text(),
+                    content: $(this).closest("tr").find("td:eq(13)").text(),
+                };
+                selectedData.push(rowData); // Tambahkan data ke dalam array
+            });
+
+            // Sekarang selectedData berisi semua data yang dicentang
+            console.log("Data yang dicentang:", selectedData);
+
+            // Di sini Anda dapat melakukan apa pun yang Anda inginkan dengan data yang dicentang.
+        }
+    });
+</script>
 </body>
 </html>

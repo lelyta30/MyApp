@@ -33,10 +33,17 @@
     </select>
 </div>
 
-                                <div class="form-group">
-                                    <label>Message</label>
-                                        <textarea name="body" class="form-control" rows="3">APA</textarea>
-                                </div>
+<div class="form-group">
+    <label>Message</label>
+    <select name="post[]" multiple class="form-control post" id="meterSelect">
+        <option value="A">Merk Meter A</option>
+        <option value="B">Merk Meter B</option>
+    </select>
+</div>
+<div class="form-group">
+    <label>Pesan</label>
+    <textarea name="body" class="form-control" rows="3"></textarea>
+</div>
                                 <button type="submit" class="btn btn-primary mt-2">Send</button>
                             </form>
                         </div>
@@ -47,9 +54,31 @@
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script>
-            $(document).ready(function() {
-            $('.post').select2();
-            });
-        </script>
+    $(document).ready(function() {
+        $('.post').select2();
+        
+        // Fungsi untuk memperbarui pesan berdasarkan opsi yang dipilih
+        function perbaruiPesan() {
+            const opsiTerpilih = $('#meterSelect').val(); // Dapatkan opsi yang dipilih
+
+            // Tetapkan pesan default dan perbarui sesuai dengan opsi yang dipilih
+            let pesan = ""; // Pesan default
+            if (opsiTerpilih) {
+                if (opsiTerpilih.includes('A')) {
+                    pesan = "HALO"; // Ubah pesan untuk jenis A
+                } else if (opsiTerpilih.includes('B')) {
+                    pesan = "HAI"; // Ubah pesan untuk jenis B
+                }
+            }
+
+            // Perbarui textarea dengan pesan baru
+            $('textarea[name="body"]').val(pesan);
+        }
+
+        // Panggil fungsi perbaruiPesan secara awal dan setiap kali input select berubah
+        perbaruiPesan();
+        $('#meterSelect').on('change', perbaruiPesan);
+    });
+</script>
     </body>
 </html>

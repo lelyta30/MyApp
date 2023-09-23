@@ -18,3 +18,4 @@ Route::post('/',  [PostsController::class,'store']);
 
 Route::resource('/posts', 'PostsController');
 Route::post('/custom',  [PostsController::class,'sendCustomMessage']);
+Route::get('checkbox', 'PostsController@checkboxPage');

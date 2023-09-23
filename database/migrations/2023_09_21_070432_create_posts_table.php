@@ -15,7 +15,19 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('phone')->unique();
+            $table->string('id_pelanggan');
+            $table->string('address');
+            $table->string('name');
+            $table->string('tariff');
+            $table->string('daya');
+            $table->string('no_meter');
+            $table->string('merk_meter');
+            $table->string('type_meter');
+            $table->string('no_comm_device');
+            $table->string('merk_comm_device');
+            $table->string('type_comm_device');
+            $table->string('port');
+                $table->string('phone')->unique();
             $table->string('slug');
             $table->text('content');
             $table->timestamps();

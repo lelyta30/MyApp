@@ -15,6 +15,16 @@ class PostsController extends Controller
         $posts = Post::latest()->get();
         return view('posts.index', compact('posts'));
     }
+
+    public function insertCheckbox(Request $request)
+    {
+        dd($request->all());
+    }
+    
+    public function checkboxpage(Request $request)
+    {
+        return view('posts.checkbox');
+    }
     
     public function create()
     {
