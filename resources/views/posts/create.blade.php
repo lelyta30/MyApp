@@ -24,7 +24,7 @@
     <label>Select contact</label>
     <select name="post[]" multiple class="form-control post">
         @foreach ($users as $user)
-            @if ($user->phone === '+6283845930444')
+            @if ($user->phone)
                 <option value="{{ $user->phone }}" selected>{{ $user->phone }}</option>
             @else
                 <option value="{{ $user->phone }}">{{ $user->phone }}</option>
@@ -34,10 +34,10 @@
 </div>
 
 <div class="form-group">
-    <label>Message</label>
+    <label>PILIH MERK METER</label>
     <select name="post[]" multiple class="form-control post" id="meterSelect">
-        <option value="A">Merk Meter A</option>
-        <option value="B">Merk Meter B</option>
+        <option value="WASION">WASION</option>
+        <option value="HEXING">HEXING</option>
     </select>
 </div>
 <div class="form-group">
@@ -64,9 +64,9 @@
             // Tetapkan pesan default dan perbarui sesuai dengan opsi yang dipilih
             let pesan = ""; // Pesan default
             if (opsiTerpilih) {
-                if (opsiTerpilih.includes('A')) {
+                if (opsiTerpilih.includes('WASION')) {
                     pesan = "HALO"; // Ubah pesan untuk jenis A
-                } else if (opsiTerpilih.includes('B')) {
+                } else if (opsiTerpilih.includes('HEXING')) {
                     pesan = "HAI"; // Ubah pesan untuk jenis B
                 }
             }
