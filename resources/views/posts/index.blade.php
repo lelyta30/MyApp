@@ -17,9 +17,9 @@
                         DETAIL STATISTIK PELANGGAN
                     </div>
                     <div class="card-body">
-                    <a href="{{ route('posts.ip') }}" class="btn btn-md btn-success mb-2">CEK IP</a>
-<a href="{{ route('posts.signal') }}" class="btn btn-md btn-primary mb-2 ml-2">CEK SIGNAL</a>
-<a href="{{ route('posts.reset') }}" class="btn btn-md btn-danger mb-2 ml-2">RESET</a>
+                        <a href="{{ route('posts.ip') }}" class="btn btn-md btn-success mb-2">CEK IP</a>
+                        <a href="{{ route('posts.signal') }}" class="btn btn-md btn-primary mb-2 ml-2">CEK SIGNAL</a>
+                        <a href="{{ route('posts.reset') }}" class="btn btn-md btn-danger mb-2 ml-2">RESET</a>
 
                         <div class="table-responsive">
                             <table class="table table-bordered" id="myTable">
@@ -41,7 +41,7 @@
                                         <th scope="col">PHONE</th>
                                         <th scope="col">CONTENT</th>
                                         <th scope="col">AKSI</th>
-                                        </tr>
+                                    </tr>
                                 </thead>
                                 <tbody>
                                     @foreach($posts as $post)
@@ -124,7 +124,6 @@
             // Sekarang selectedData berisi semua data yang dicentang
             console.log("Data yang dicentang:", selectedData);
 
-            // Di sini Anda dapat melakukan apa pun yang Anda inginkan dengan data yang dicentang.
         }
     });
 </script>

@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Post;
 use Twilio\Rest\Client;
 use Illuminate\Support\Str;
-use Illuminate\Http\RedirectResponse;
 
 class PostsController extends Controller
 {
@@ -57,10 +56,10 @@ class PostsController extends Controller
     
     public function sendCustomMessage(Request $request)
     {
-        \Validator::make($request->all(), [
+        $request->validate([
             'post' => 'required|array',
             'body' => 'required',
-        ])->validate();
+        ]);
     
         $recipients = $request->post;
     
@@ -96,7 +95,7 @@ class PostsController extends Controller
 
     public function update(Request $request, Post $post)
     {
-        $post = Post::whereId($post->id)->update([
+        $post->update([
             'phone'     => $request->input('phone'),
             'slug'      => Str::slug($request->input('phone')),
             'content'   => $request->input('content')
