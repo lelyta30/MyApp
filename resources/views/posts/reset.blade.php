@@ -18,7 +18,7 @@
                         PORTAL                    
                     </div>
                         <div class="card-body">
-                            <form method="POST" action="/custom">
+                        <form method="POST" action="/custom">
                                 @csrf
                                 <div class="form-group">
     <label>Select contact</label>
@@ -34,7 +34,7 @@
 </div>
 
 <div class="form-group">
-    <label>PILIH MERK METER</label>
+    <label>PILIH MERK COMM DEVICE</label>
     <select name="post[]" multiple class="form-control post" id="meterSelect">
         <option value="WASION">WASION</option>
         <option value="HEXING">HEXING</option>

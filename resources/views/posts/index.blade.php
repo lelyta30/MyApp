@@ -17,7 +17,10 @@
                         DETAIL STATISTIK PELANGGAN
                     </div>
                     <div class="card-body">
-                        <a href="{{ route('posts.create') }}" class="btn btn-md btn-success mb-2">CEK IP</a>
+                    <a href="{{ route('posts.ip') }}" class="btn btn-md btn-success mb-2">CEK IP</a>
+<a href="{{ route('posts.signal') }}" class="btn btn-md btn-primary mb-2 ml-2">CEK SIGNAL</a>
+<a href="{{ route('posts.reset') }}" class="btn btn-md btn-danger mb-2 ml-2">RESET</a>
+
                         <div class="table-responsive">
                             <table class="table table-bordered" id="myTable">
                                 <thead>

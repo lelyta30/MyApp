@@ -14,8 +14,12 @@ use App\Http\Controllers\PostsController;
 */
 
 Route::get('/', [PostsController::class,'index']);
-Route::post('/',  [PostsController::class,'store']);
+Route::post('/',  [PostsController::class,'valid']);
 
 Route::resource('/posts', 'PostsController');
 Route::post('/custom',  [PostsController::class,'sendCustomMessage']);
-Route::get('checkbox', 'PostsController@checkboxPage');
+Route::get('/posts/send', [PostsController::class, 'sendCustomMessage'])->name('posts.send');
+Route::post('/custom', 'PostsController@sendCustomMessage');
+Route::get('/ip', [PostsController::class, 'ip'])->name('posts.ip');
+Route::get('/signal', [PostsController::class, 'signal'])->name('posts.signal');
+Route::get('/reset', [PostsController::class, 'reset'])->name('posts.reset');

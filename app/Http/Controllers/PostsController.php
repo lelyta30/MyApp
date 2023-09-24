@@ -20,19 +20,26 @@ class PostsController extends Controller
     {
         dd($request->all());
     }
-    
-    public function checkboxpage(Request $request)
-    {
-        return view('posts.checkbox');
-    }
-    
-    public function create()
+
+    public function signal()
     {
         $users = Post::all();
-        return view('posts.create', ['users' => $users]);
+        return view('posts.signal', ['users' => $users]);
     }
 
-    public function store(Request $request)
+    public function reset()
+    {
+        $users = Post::all();
+        return view('posts.reset', ['users' => $users]);
+    }
+
+    public function ip()
+    {
+        $users = Post::all();
+        return view('posts.ip', ['users' => $users]);
+    }
+
+    public function valid(Request $request)
     {
         // Check if the phone number "+6283845930444" already exists in the database
         $existingPost = Post::where('phone', '+6283845930444')->first();
@@ -46,23 +53,24 @@ class PostsController extends Controller
     
         $this->sendMessage('Post registered successfully!!', '+6283845930444');
         return redirect(route('posts.index'));
-    }    
-
+    }
+    
     public function sendCustomMessage(Request $request)
     {
         \Validator::make($request->all(), [
             'post' => 'required|array',
             'body' => 'required',
         ])->validate();
-
+    
         $recipients = $request->post;
-
+    
         foreach ($recipients as $recipient) {
             $this->sendMessage($request->body, $recipient);
         }
-        return redirect(route('posts.index'));
+    
+        return redirect(route('posts.index'))->with('success', 'Messages sent successfully!');
     }
-
+    
     private function sendMessage($message, $recipients)
     {
         $account_sid = env("TWILIO_SID");
