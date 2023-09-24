@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Post;
+use App\Exports\PostExport;
+use App\Imports\PostImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Twilio\Rest\Client;
+use Illuminate\Support\Facades\Session; 
 use Illuminate\Support\Str;
+use Maatwebsite\Excel\Exceptions\Concerns\ToModel\InvalidModel;
 
 class PostsController extends Controller
 {
@@ -14,6 +19,47 @@ class PostsController extends Controller
         $posts = Post::latest()->get();
         return view('posts.index', compact('posts'));
     }
+
+    public function import_excel(Request $request)
+    {
+        // validasi
+        $this->validate($request, [
+            'file' => 'required|file|mimes:csv,xls,xlsx'
+        ], [
+            'file.required' => 'Please select an Excel file to import.',
+            'file.mimes' => 'The selected file must be a CSV, XLS, or XLSX file.',
+        ]);
+        
+        // menangkap file excel
+        $file = $request->file('file');
+
+        // membuat nama file unik
+        $nama_file = rand() . $file->getClientOriginalName();
+
+        // upload ke folder file_post di dalam folder public
+        $file->move('file_post', $nama_file);
+
+        // import data
+        try {
+            Excel::import(new PostImport, public_path('/file_post/' . $nama_file));
+        } catch (InvalidModel $e) {
+            return redirect()->back()->with(['error' => 'Error saat mengimpor data: ' . $e->getMessage()]);
+        }
+    
+        // notifikasi dengan session
+        Session::flash('success', 'Data Berhasil Diimport!');
+        
+        return redirect()->back()->withErrors(['error' => 'Error saat mengimpor data: ' . $e->getMessage()]);
+
+        // alihkan halaman kembali ke halaman sebelumnya atau sesuaikan dengan kebutuhan Anda
+        return redirect()->back(); // Anda mungkin ingin mengalihkan ke halaman yang sesuai.
+    }
+
+    
+	public function export_excel()
+	{
+		return Excel::download(new PostExport, 'pelanggan.xlsx');
+	}
 
     public function insertCheckbox(Request $request)
     {

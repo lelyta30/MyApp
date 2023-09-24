@@ -16,7 +16,7 @@
                 <div class="card">
                     <div class="card-header">
                         PORTAL                    
-                    </div>
+                        </div>
                     <div class="card-body">
                         <form method="POST" action="/custom">
                             @csrf

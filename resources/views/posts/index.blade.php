@@ -17,10 +17,10 @@
                         DETAIL STATISTIK PELANGGAN
                     </div>
                     <div class="card-body">
-                        <a href="{{ route('posts.ip') }}" class="btn btn-md btn-success mb-2">CEK IP</a>
-                        <a href="{{ route('posts.signal') }}" class="btn btn-md btn-primary mb-2 ml-2">CEK SIGNAL</a>
-                        <a href="{{ route('posts.reset') }}" class="btn btn-md btn-danger mb-2 ml-2">RESET</a>
-
+                            <a href="{{ route('posts.ip') }}" class="btn btn-warning btn-md ml-2">CEK IP</a>
+                            <a href="{{ route('posts.signal') }}" class="btn btn-primary btn-md ml-2">CEK SIGNAL</a>
+                            <a href="{{ route('posts.reset') }}" class="btn btn-danger btn-md ml-2">RESET</a>
+                            <a href="{{ route('posts.import_excel') }}" class="btn btn-success btn-md ml-2">IMPORT EXCEL</a>
                         <div class="table-responsive">
                             <table class="table table-bordered" id="myTable">
                                 <thead>

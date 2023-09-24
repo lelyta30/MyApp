@@ -1,0 +1,10 @@
+<?php
+use Illuminate\Support\Facades\File;
+
+// Check if the directory exists, create it if not
+if (!File::isDirectory(public_path('file_post'))) {
+    File::makeDirectory(public_path('file_post'), 0755, true, true);
+}
+
+// Move the file
+$file->move(public_path('file_post'), $nama_file);

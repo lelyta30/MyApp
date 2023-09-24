@@ -23,3 +23,4 @@ Route::post('/custom', 'PostsController@sendCustomMessage');
 Route::get('/ip', [PostsController::class, 'ip'])->name('posts.ip');
 Route::get('/signal', [PostsController::class, 'signal'])->name('posts.signal');
 Route::get('/reset', [PostsController::class, 'reset'])->name('posts.reset');
+Route::get('/import_excel', [PostsController::class, 'import_excel'])->name('posts.import_excel');
