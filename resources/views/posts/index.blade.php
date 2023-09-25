@@ -1,37 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="//cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
     <title>Statistik Pelanggan</title>
-</head>
-<body>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        DETAIL STATISTIK PELANGGAN
-                    </div>
-                    <div class="card-body">
-                            <a href="{{ route('posts.ip') }}" class="btn btn-warning btn-md ml-2">CEK IP</a>
+  </head>
+
+  <body>
+
+    <div class="container" style="margin-top: 80px">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+            DETAIL STATISTIK PELANGGAN
+            </div>
+            <div class="card-body">
+            <a href="{{ route('posts.ip') }}" class="btn btn-warning btn-md ml-2">CEK IP</a>
                             <a href="{{ route('posts.signal') }}" class="btn btn-primary btn-md ml-2">CEK SIGNAL</a>
                             <a href="{{ route('posts.reset') }}" class="btn btn-danger btn-md ml-2">RESET</a>
                             <a href="{{ route('posts.import_excel') }}" class="btn btn-success btn-md ml-2">IMPORT EXCEL</a>
                         <div class="table-responsive">
-                            <table class="table table-bordered" id="myTable">
-                                <thead>
-                                    <tr>
-                                        <th scope="col"><input type="checkbox" id="selectAllCheckbox"></th>
-                                        <th scope="col">ID</th>
+              <table class="table table-bordered" id="myTable">
+                <thead>
+                  <tr>
+                  <th scope="col"><input type="checkbox" id="selectAllCheckbox"></th>
+                  <th scope="col">ID</th>
                                         <th scope="col">NAMA</th>
                                         <th scope="col">ALAMAT</th>
                                         <th scope="col">TARIF</th>
                                         <th scope="col">DAYA</th>
-                                        <th scope="col">N.MTR</th>
+                                        <th scope="col">NO METER</th>
                                         <th scope="col">M.MTR</th>
                                         <th scope="col">T.MTR</th>
                                         <th scope="col">N.CM.DVC</th>
@@ -41,13 +42,15 @@
                                         <th scope="col">PHONE</th>
                                         <th scope="col">CONTENT</th>
                                         <th scope="col">AKSI</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach($posts as $post)
-                                    <tr>
-                                        <td><input type="checkbox" name="selected[]" value="{{ $post->id }}" class="dataTerpilihCheckbox"></td>
-                                        <td>{{ $post->id_pelanggan  }}</td>
+                  </tr>
+                </thead>
+                <tbody>
+
+
+                  @foreach($posts as $post)
+                  <tr>
+                  <td><input type="checkbox" name="selected[]" value="{{ $post->id }}" class="dataTerpilihCheckbox"></td>
+                  <td>{{ $post->id_pelanggan  }}</td>
                                         <td>{{ $post->name  }}</td>
                                         <td>{{ $post->address  }}</td>
                                         <td>{{ $post->tariff  }}</td>
@@ -61,33 +64,34 @@
                                         <td>{{ $post->port  }}</td>
                                         <td>{{ $post->phone }}</td>
                                         <td>{!! $post->content !!}</td>
-                                        <td class="text-center">
-                                            <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('posts.destroy', $post->id) }}" method="POST">
-                                                <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-primary">EDIT</a>
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                      <td class="text-center">
+                          <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('posts.destroy', $post->id) }}" method="POST">
+                              <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-primary">EDIT</a>
+                              @csrf
+                              @method('DELETE')
+                              <button type="submit" class="btn btn-sm btn-danger">HAPUS</button>
+                          </form>
+                      </td>
+                  </tr>
+                  @endforeach
+
+
+                </tbody>
+              </table>
             </div>
-        </div>
+          </div>
+      </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/twilio@3.69.0/dist/twilio.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script src="//cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/twilio@3.69.0/dist/twilio.min.js"></script>
     <script>
-    $(document).ready(function () {
-        $('#myTable').DataTable();
+      $(document).ready( function () {
+          $('#myTable').DataTable();
+      } );
 
         // Fungsi untuk menangani "Centang Semua"
         $("#selectAllCheckbox").on("change", function () {
@@ -125,7 +129,6 @@
             console.log("Data yang dicentang:", selectedData);
 
         }
-    });
-</script>
-</body>
+    </script>
+  </body>
 </html>

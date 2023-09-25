@@ -27,7 +27,7 @@ class CreatePostsTable extends Migration
             $table->string('merk_comm_device');
             $table->string('type_comm_device');
             $table->string('port');
-                $table->string('phone')->unique();
+            $table->string('phone')->unique();
             $table->string('slug');
             $table->text('content');
             $table->timestamps();
